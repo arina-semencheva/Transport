@@ -193,6 +193,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DAO\Test\ITestClass.cs" />
+    <Compile Include="DAO\Test\TestClass.cs" />
     <Compile Include="DataModel\AspNetRoles.cs">
       <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>
@@ -208,7 +210,19 @@
     <Compile Include="DataModel\C__MigrationHistory.cs">
       <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\TestTable.cs">
+    <Compile Include="DataModel\Fuel.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Person.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Route.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Ticket.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Transport.cs">
       <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="DataModel\TransportEntities.Context.cs">
@@ -225,6 +239,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TransportEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TransportType.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

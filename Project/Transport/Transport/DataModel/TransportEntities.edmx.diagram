@@ -10,10 +10,15 @@
         <EntityTypeShape EntityType="TransportDBModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportDBModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TransportDBModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TransportDBModel.TestTable" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="TransportDBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="TransportDBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="TransportDBModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TransportDBModel.Fuel" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="TransportDBModel.Person" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="TransportDBModel.Route" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="TransportDBModel.Ticket" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="TransportDBModel.Transport" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="TransportDBModel.TransportType" Width="1.5" PointX="9.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

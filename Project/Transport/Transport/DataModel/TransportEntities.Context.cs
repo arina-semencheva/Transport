@@ -30,6 +30,11 @@ namespace Transport.DataModel
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
-        public virtual DbSet<TestTable> TestTable { get; set; }
+        public virtual DbSet<Fuel> Fuel { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<Route> Route { get; set; }
+        public virtual DbSet<Ticket> Ticket { get; set; }
+        public virtual DbSet<Transport> Transport { get; set; }
+        public virtual DbSet<TransportType> TransportType { get; set; }
     }
 }
