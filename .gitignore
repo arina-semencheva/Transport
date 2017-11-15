@@ -173,3 +173,10 @@ Project/Transport/Transport/bin/EntityFramework.SqlServer.dll
 Project/Transport/Transport/bin/ApplicationInsights.config
 Project/Transport/Transport/bin/Antlr3.Runtime.pdb
 Project/Transport/Transport/bin/Antlr3.Runtime.dll
+Project/Transport/Transport/obj/Debug/edmxResourcesToEmbed/DataModel/TransportEntities.ssdl
+Project/Transport/Transport/obj/Debug/edmxResourcesToEmbed/DataModel/TransportEntities.msl
+Project/Transport/Transport/obj/Debug/edmxResourcesToEmbed/DataModel/TransportEntities.csdl
+Project/Transport/Transport/obj/Debug/TempPE/DataModel.TransportEntities.cs.dll
+Project/Transport/Transport/obj/Debug/TempPE/DataModel.TransportEntities.Designer.cs.dll
+Project/Transport/Transport/obj/Debug/TempPE/DataModel.TransportEntities.Context.cs.dll
+Project/Transport/Transport.Tests/obj/Debug/Transport.Tests.csprojResolveAssemblyReference.cache

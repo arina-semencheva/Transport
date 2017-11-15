@@ -52,6 +52,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -191,6 +193,39 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataModel\AspNetRoles.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AspNetUserClaims.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AspNetUserLogins.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\AspNetUsers.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\C__MigrationHistory.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TestTable.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TransportEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TransportEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\TransportEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransportEntities.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,6 +238,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="DataModel\TransportEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TransportEntities.edmx</DependentUpon>
+      <LastGenOutput>TransportEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataModel\TransportEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TransportEntities.edmx</DependentUpon>
+      <LastGenOutput>TransportEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -211,6 +256,13 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="DataModel\TransportEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TransportEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataModel\TransportEntities.edmx.diagram">
+      <DependentUpon>TransportEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -275,6 +327,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
