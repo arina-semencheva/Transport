@@ -173,12 +173,3 @@ Project/Transport/Transport/bin/EntityFramework.SqlServer.dll
 Project/Transport/Transport/bin/ApplicationInsights.config
 Project/Transport/Transport/bin/Antlr3.Runtime.pdb
 Project/Transport/Transport/bin/Antlr3.Runtime.dll
-Project/Transport/Transport/Models/ManageViewModels.cs
-Project/Transport/Transport/Models/IdentityModels.cs
-Project/Transport/Transport/Models/AccountViewModels.cs
-Project/Transport/Transport/Controllers/ManageController.cs
-Project/Transport/Transport/Controllers/HomeController.cs
-Project/Transport/Transport/Controllers/AccountController.cs
-Project/Transport/Transport/Content/bootstrap.min.css
-Project/Transport/Transport/Content/bootstrap.css
-Project/Transport/Transport/Content/Site.css
