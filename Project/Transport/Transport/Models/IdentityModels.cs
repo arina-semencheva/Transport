@@ -19,7 +19,7 @@ namespace Transport.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("TransportDBEntities", throwIfV1Schema: false)
+            : base("AuthContext", throwIfV1Schema: false)
         {
         }
 
