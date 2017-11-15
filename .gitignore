@@ -182,3 +182,5 @@ Project/Transport/Transport/obj/Debug/TempPE/DataModel.TransportEntities.Context
 Project/Transport/Transport.Tests/obj/Debug/Transport.Tests.csprojResolveAssemblyReference.cache
 Project/Transport/Transport.Tests/obj/Debug/Transport.Tests.csproj.FileListAbsolute.txt
 Project/Transport/.vs/Transport/v15/.suo
+Project/Transport/Transport.Tests/obj/Debug/Transport.Tests.pdb
+Project/Transport/Transport.Tests/obj/Debug/Transport.Tests.dll
