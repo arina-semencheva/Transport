@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Transport.DAO.RouteDAO;
+using Transport.DataModel;
 using Transport.Models;
 
 namespace Transport.Controllers
@@ -12,14 +13,19 @@ namespace Transport.Controllers
     public class RouteController : Controller
     {
 
-        private IRouteDAO _routeDAO;
+        //private IRouteDAO _routeDAO;
+        private RouteDAO _routeDAO = new RouteDAO();
 
-        public RouteController(IRouteDAO routeDAO)
+        public RouteController()
         {
-            _routeDAO = routeDAO;
+
         }
 
-        // GET: Route
+        //public RouteController(RouteDAO routeDAO)
+        //{
+        //    _routeDAO = routeDAO;
+        //}
+
         public async Task<ActionResult> Index()
         {
             var routes = await _routeDAO.GetRoutes();
@@ -31,11 +37,11 @@ namespace Transport.Controllers
         {
             return View(routeId);
         }
-            
+
         [HttpPost]
         public async Task<ActionResult> EditRoute(RouteViewModel model)
         {
-            if(ModelState.IsValid && model != null)
+            if (ModelState.IsValid && model != null)
             {
                 await _routeDAO.EditRoute(model);
             }
@@ -56,6 +62,21 @@ namespace Transport.Controllers
             RedirectToAction("Index");
             return null;
         }
-       
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(RouteViewModel model)
+        {
+            if (ModelState.IsValid && model != null)
+                await _routeDAO.CreateRoute(model);
+            RedirectToAction("Index");
+            return null;
+        }
+
     }
 }

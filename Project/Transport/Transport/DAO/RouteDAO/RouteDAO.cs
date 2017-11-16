@@ -11,12 +11,14 @@ namespace Transport.DAO.RouteDAO
 {
     public class RouteDAO : IRouteDAO
     {
-        private TransportDBEntities _edmx;
+        private TransportDBEntities _edmx = new TransportDBEntities();
 
         public RouteDAO(TransportDBEntities edmx)
         {
             _edmx = edmx;
         }
+
+        public RouteDAO() { }
 
         public async Task<IEnumerable<RouteViewModel>> GetRoutes() =>
             await _edmx.Route.Select(x => new RouteViewModel

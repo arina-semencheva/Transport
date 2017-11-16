@@ -341,13 +341,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Route\Index.cshtml" />
+    <Content Include="Views\Route\Edit.cshtml" />
+    <Content Include="Views\Route\DeleteRoute.cshtml" />
+    <Content Include="Views\Route\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DAO\PersonDAO\" />
     <Folder Include="DAO\TransportDAO\" />
     <Folder Include="Views\Roles\" />
-    <Folder Include="Views\Route\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
