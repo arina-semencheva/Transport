@@ -7,5 +7,8 @@ namespace Transport.Models
 {
     public class RouteViewModel
     {
+        public int RouteId { get; set; }
+        public string FirstStop { get; set; }
+        public string LastSport { get; set; }
     }
 }

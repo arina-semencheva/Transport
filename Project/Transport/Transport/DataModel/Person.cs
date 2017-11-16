@@ -20,5 +20,7 @@ namespace Transport.DataModel
         public string Surname { get; set; }
         public System.DateTime BirthDate { get; set; }
         public int ExperienceWork { get; set; }
+    
+        public virtual PersonType PersonType { get; set; }
     }
 }

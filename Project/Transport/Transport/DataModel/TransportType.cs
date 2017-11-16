@@ -17,5 +17,7 @@ namespace Transport.DataModel
         public int TransportTypeId { get; set; }
         public int TransportTypeName { get; set; }
         public Nullable<System.DateTime> Year { get; set; }
+    
+        public virtual Transport Transport { get; set; }
     }
 }

@@ -221,6 +221,9 @@
     <Compile Include="DataModel\Person.cs">
       <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\PersonType.cs">
+      <DependentUpon>TransportEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\Route.cs">
       <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>

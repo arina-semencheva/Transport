@@ -12,22 +12,18 @@ namespace Transport.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Route
+    public partial class PersonType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Route()
+        public PersonType()
         {
-            this.Ticket = new HashSet<Ticket>();
-            this.Transport = new HashSet<Transport>();
+            this.Person = new HashSet<Person>();
         }
     
-        public int RouteId { get; set; }
-        public string FirstStop { get; set; }
-        public string LastStop { get; set; }
+        public int PersonTypeId { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ticket> Ticket { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transport> Transport { get; set; }
+        public virtual ICollection<Person> Person { get; set; }
     }
 }

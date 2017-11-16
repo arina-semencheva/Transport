@@ -36,5 +36,6 @@ namespace Transport.DataModel
         public virtual DbSet<Ticket> Ticket { get; set; }
         public virtual DbSet<Transport> Transport { get; set; }
         public virtual DbSet<TransportType> TransportType { get; set; }
+        public virtual DbSet<PersonType> PersonType { get; set; }
     }
 }
