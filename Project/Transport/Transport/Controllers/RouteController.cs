@@ -13,18 +13,12 @@ namespace Transport.Controllers
     public class RouteController : Controller
     {
 
-        //private IRouteDAO _routeDAO;
         private RouteDAO _routeDAO = new RouteDAO();
 
         public RouteController()
         {
 
         }
-
-        //public RouteController(RouteDAO routeDAO)
-        //{
-        //    _routeDAO = routeDAO;
-        //}
 
         public async Task<ActionResult> Index()
         {
@@ -33,34 +27,40 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int routeId)
+        public async Task<ActionResult> Edit(int routeId)
         {
-            return View(routeId);
+            var route = await _routeDAO.GetRouteById(routeId);
+            return View(route);
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditRoute(RouteViewModel model)
+        public async Task<ActionResult> Edit(RouteViewModel model)
         {
             if (ModelState.IsValid && model != null)
             {
                 await _routeDAO.EditRoute(model);
             }
-            RedirectToAction("Index");
-            return null;
+            else
+                throw new Exception("Модель для изменения не определена");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ActionResult Delete(int routeId)
+        public async Task<ActionResult> Delete(int routeId)
         {
-            return View(routeId);
+            var route = await _routeDAO.GetRouteById(routeId);
+            return View(route);
         }
 
-        public async Task<ActionResult> DeleteRoute(int routeId)
+        [HttpPost]
+        public async Task<ActionResult> Delete(RouteViewModel route)
         {
-            if (routeId > 0)
-                await _routeDAO.DeleteRoute(routeId);
-            RedirectToAction("Index");
-            return null;
+            if (ModelState.IsValid && route != null)
+
+                await _routeDAO.DeleteRoute(route.RouteId);
+            else
+                throw new Exception("Входной параметр не определен");
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -74,8 +74,9 @@ namespace Transport.Controllers
         {
             if (ModelState.IsValid && model != null)
                 await _routeDAO.CreateRoute(model);
-            RedirectToAction("Index");
-            return null;
+            else
+                throw new Exception("Пустая модель");
+            return RedirectToAction("Index");
         }
 
     }

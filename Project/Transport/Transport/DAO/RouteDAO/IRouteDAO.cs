@@ -13,5 +13,6 @@ namespace Transport.DAO.RouteDAO
         Task CreateRoute(RouteViewModel model);
         Task EditRoute(RouteViewModel model);
         Task DeleteRoute(int routeId);
+        Task<RouteViewModel> GetRouteById(int routeId);
     }
 }

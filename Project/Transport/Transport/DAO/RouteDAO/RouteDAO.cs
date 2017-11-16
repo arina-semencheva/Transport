@@ -30,33 +30,69 @@ namespace Transport.DAO.RouteDAO
             .ToListAsync();
 
 
-       
+
         public async Task CreateRoute(RouteViewModel model)
         {
-            var routeEntity = new Route
+            try
             {
-                FirstStop = model.FirstStop,
-                LastStop = model.LastSport
-            };
-            _edmx.Route.Add(routeEntity);
+                var routeEntity = new Route
+                {
+                    FirstStop = model.FirstStop,
+                    LastStop = model.LastSport
+                };
+                _edmx.Route.Add(routeEntity);
+            }
+            catch (Exception ex)
+            {
+
+            }
             await _edmx.SaveChangesAsync();
         }
 
         public async Task DeleteRoute(int routeId)
         {
-            var routeEntity = await _edmx.Route
+            try
+            {
+                var routeEntity = await _edmx.Route
                 .FirstOrDefaultAsync(x => x.RouteId == routeId);
-            _edmx.Route.Remove(routeEntity);
+                _edmx.Route.Remove(routeEntity);
+            }
+            catch (Exception ex)
+            {
+
+            }
             await _edmx.SaveChangesAsync();
         }
 
         public async Task EditRoute(RouteViewModel model)
         {
-            var routeEntity = await _edmx.Route.FirstOrDefaultAsync(x => x.RouteId == model.RouteId);
-            routeEntity.FirstStop = model.FirstStop;
-            routeEntity.LastStop = model.LastSport;
+            try
+            {
+                var routeEntity = await _edmx.Route.FirstOrDefaultAsync(x => x.RouteId == model.RouteId);
+                routeEntity.FirstStop = model.FirstStop;
+                routeEntity.LastStop = model.LastSport;
+            }
+            catch (Exception ex)
+            {
+
+            }
             await _edmx.SaveChangesAsync();
         }
+
+        public async Task<RouteViewModel> GetRouteById(int routeId)
+        =>
+            await
+            (
+            from route in _edmx.Route
+            where route.RouteId == routeId
+            select new RouteViewModel
+            {
+                RouteId = route.RouteId,
+                FirstStop = route.FirstStop,
+                LastSport = route.LastStop
+            }
+            )
+            .FirstOrDefaultAsync();
 
     }
 }
