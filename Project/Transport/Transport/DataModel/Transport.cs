@@ -14,13 +14,23 @@ namespace Transport.DataModel
     
     public partial class Transport
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Transport()
+        {
+            this.Person = new HashSet<Person>();
+        }
+    
         public int TransportId { get; set; }
         public int RouteId { get; set; }
         public int PersonId { get; set; }
         public string EngineNumber { get; set; }
         public int OrganizationId { get; set; }
+        public int FuelId { get; set; }
     
         public virtual Route Route { get; set; }
         public virtual TransportType TransportType { get; set; }
+        public virtual Fuel Fuel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Person> Person { get; set; }
     }
 }

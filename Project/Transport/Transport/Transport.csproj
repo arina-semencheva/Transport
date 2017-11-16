@@ -197,9 +197,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="DAO\Test\ITestClass.cs" />
-    <Compile Include="DAO\Test\TestClass.cs" />
+    <Compile Include="DAO\RouteDAO\IRouteDAO.cs" />
+    <Compile Include="DAO\RouteDAO\RouteDAO.cs" />
     <Compile Include="DataModel\AspNetRoles.cs">
       <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>
@@ -343,7 +344,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="DAO\PersonDAO\" />
+    <Folder Include="DAO\TransportDAO\" />
     <Folder Include="Views\Roles\" />
+    <Folder Include="Views\Route\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
