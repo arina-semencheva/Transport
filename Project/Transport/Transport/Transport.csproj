@@ -198,9 +198,12 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\TransportController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="DAO\RouteDAO\IRouteDAO.cs" />
-    <Compile Include="DAO\RouteDAO\RouteDAO.cs" />
+    <Compile Include="DAO\Route\IRouteDAO.cs" />
+    <Compile Include="DAO\Route\RouteDAO.cs" />
+    <Compile Include="DAO\Transport\ITransportDAO.cs" />
+    <Compile Include="DAO\Transport\TransportDAO.cs" />
     <Compile Include="DataModel\AspNetRoles.cs">
       <DependentUpon>TransportEntities.tt</DependentUpon>
     </Compile>
@@ -259,6 +262,7 @@
     <Compile Include="Models\FuleViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PersonTypeViewModel.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\RouteViewModel.cs" />
     <Compile Include="Models\TicketViewModel.cs" />
@@ -345,11 +349,14 @@
     <Content Include="Views\Route\Edit.cshtml" />
     <Content Include="Views\Route\Delete.cshtml" />
     <Content Include="Views\Route\Create.cshtml" />
+    <Content Include="Views\Transport\Index.cshtml" />
+    <Content Include="Views\Transport\Edit.cshtml" />
+    <Content Include="Views\Transport\Delete.cshtml" />
+    <Content Include="Views\Transport\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAO\PersonDAO\" />
-    <Folder Include="DAO\TransportDAO\" />
+    <Folder Include="DAO\Person\" />
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
