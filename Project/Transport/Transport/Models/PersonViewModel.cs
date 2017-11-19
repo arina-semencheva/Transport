@@ -14,5 +14,6 @@ namespace Transport.Models
         public DateTime BirthDate { get; set; }
         public int ExperienceWork { get; set; }
         public int TransportId { get; set; }
+        public int PersonTypeId { get; set; }
     }
 }

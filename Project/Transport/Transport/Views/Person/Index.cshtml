@@ -34,31 +34,30 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExperienceWork)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransportId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { personId = item.PersonId }) |
-                @Html.ActionLink("Details", "Details", new { personId = item.PersonId }) |
-                @Html.ActionLink("Delete", "Delete", new { personId = item.PersonId })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExperienceWork)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransportId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { personId = item.PersonId }) |
+            @Html.ActionLink("Details", "Details", new { personId = item.PersonId }) |
+            @Html.ActionLink("Delete", "Delete", new { personId = item.PersonId })
+        </td>
+    </tr>
     }
-
 </table>

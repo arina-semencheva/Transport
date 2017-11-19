@@ -19,7 +19,7 @@
         <EntityTypeShape EntityType="TransportDBModel.PersonType" Width="1.5" PointX="8.375" PointY="6.25" />
         <AssociationConnector Association="TransportDBModel.FK_Ticket_RouteId" />
         <EntityTypeShape EntityType="TransportDBModel.TransportType" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="TransportDBModel.Transport" Width="1.5" PointX="9.5" PointY="7.625" />
+        <EntityTypeShape EntityType="TransportDBModel.Transport" Width="1.5" PointX="5.75" PointY="7.875" />
         <AssociationConnector Association="TransportDBModel.FK_Transport_FuelId" />
         <AssociationConnector Association="TransportDBModel.FK_Transport_RouteId" />
         <AssociationConnector Association="TransportDBModel.FK_Transport_TransportTypeId" />

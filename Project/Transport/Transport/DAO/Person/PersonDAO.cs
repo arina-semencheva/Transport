@@ -32,7 +32,8 @@ namespace Transport.DAO.Person
                                      {
                                          PersonTypeId = person.PersonTypeId,
                                          PersonTypeName = _edmx.PersonType.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
-                                     }
+                                     },
+                                     PersonTypeId = person.PersonTypeId
                                  })
                                  .ToListAsync();
             return persons;
@@ -72,7 +73,7 @@ namespace Transport.DAO.Person
             personEntity.Name = model.Name;
             personEntity.Surname = model.Surname;
             personEntity.BirthDate = model.BirthDate;
-            personEntity.PersonTypeId = model.PersonType.PersonTypeId;
+            personEntity.PersonTypeId = model.PersonTypeId;
             personEntity.TransportId = model.TransportId;
             await _edmx.SaveChangesAsync();
         }
@@ -80,20 +81,25 @@ namespace Transport.DAO.Person
         public async Task<PersonViewModel> GetPersonById(int personId)
         {
             var personEntity = await (from person in _edmx.Person
-                                 where person.PersonId == personId
-                                 select new PersonViewModel
-                                 {
-                                     PersonId = person.PersonId,
-                                     Name = person.Name,
-                                     Surname = person.Surname,
-                                     BirthDate = person.BirthDate,
-                                     ExperienceWork = person.ExperienceWork,
-                                     PersonType = new PersonTypeViewModel
-                                     {
-                                         PersonTypeId = person.PersonTypeId,
-                                         PersonTypeName = _edmx.PersonType.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
-                                     }
-                                 })
+                                      where person.PersonId == personId
+                                      select new PersonViewModel
+                                      {
+                                          PersonId = person.PersonId,
+                                          Name = person.Name,
+                                          Surname = person.Surname,
+                                          BirthDate = person.BirthDate,
+                                          ExperienceWork = person.ExperienceWork,
+                                          PersonType = new PersonTypeViewModel
+                                          {
+                                              PersonTypeId = person.PersonTypeId,
+                                              PersonTypeName = _edmx.PersonType.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
+                                          },
+                                          PersonTypeId = person.PersonTypeId,
+                                          TransportId = _edmx.Transport.FirstOrDefault(
+                                              x => x.Person.FirstOrDefault(y => y.PersonId == personId
+                                              ).PersonId == person.PersonId)
+                                              .TransportId
+                                      })
                                  .FirstOrDefaultAsync();
             return personEntity;
         }

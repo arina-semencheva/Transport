@@ -17,7 +17,7 @@ namespace Transport.Controllers
         public async Task<ActionResult> Index()
         {
             var persons = await _personDAO.GetPersons();
-            return View();
+            return View(persons);
         }
 
         [HttpGet]
