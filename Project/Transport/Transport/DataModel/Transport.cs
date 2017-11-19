@@ -27,10 +27,10 @@ namespace Transport.DataModel
         public string Name { get; set; }
         public int TransportTypeId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> Person { get; set; }
         public virtual Fuel Fuel { get; set; }
         public virtual Route Route { get; set; }
         public virtual TransportType TransportType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Person> Person { get; set; }
     }
 }

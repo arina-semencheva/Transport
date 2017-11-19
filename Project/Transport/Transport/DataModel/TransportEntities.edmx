@@ -79,11 +79,11 @@
           </Key>
           <Property Name="PersonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonTypeId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="int" Nullable="false" />
           <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="BirthDate" Type="datetime" Nullable="false" />
           <Property Name="ExperienceWork" Type="int" Nullable="false" />
           <Property Name="TransportId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PersonType">
           <Key>
@@ -425,24 +425,15 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Fuel" EntityType="TransportDBModel.Fuel" />
-          <EntitySet Name="Person" EntityType="TransportDBModel.Person" />
           <EntitySet Name="Route" EntityType="TransportDBModel.Route" />
           <EntitySet Name="Ticket" EntityType="TransportDBModel.Ticket" />
           <EntitySet Name="PersonType" EntityType="TransportDBModel.PersonType" />
-          <AssociationSet Name="FK_Person_PersonTypeId" Association="TransportDBModel.FK_Person_PersonTypeId">
-            <End Role="PersonType" EntitySet="PersonType" />
-            <End Role="Person" EntitySet="Person" />
-          </AssociationSet>
           <AssociationSet Name="FK_Ticket_RouteId" Association="TransportDBModel.FK_Ticket_RouteId">
             <End Role="Route" EntitySet="Route" />
             <End Role="Ticket" EntitySet="Ticket" />
           </AssociationSet>
           <EntitySet Name="TransportType" EntityType="TransportDBModel.TransportType" />
           <EntitySet Name="Transport" EntityType="TransportDBModel.Transport" />
-          <AssociationSet Name="FK_Person_TransportId" Association="TransportDBModel.FK_Person_TransportId">
-            <End Role="Transport" EntitySet="Transport" />
-            <End Role="Person" EntitySet="Person" />
-          </AssociationSet>
           <AssociationSet Name="FK_Transport_FuelId" Association="TransportDBModel.FK_Transport_FuelId">
             <End Role="Fuel" EntitySet="Fuel" />
             <End Role="Transport" EntitySet="Transport" />
@@ -455,6 +446,15 @@
             <End Role="TransportType" EntitySet="TransportType" />
             <End Role="Transport" EntitySet="Transport" />
           </AssociationSet>
+          <EntitySet Name="Person" EntityType="TransportDBModel.Person" />
+          <AssociationSet Name="FK_Person_PersonTypeId" Association="TransportDBModel.FK_Person_PersonTypeId">
+            <End Role="PersonType" EntitySet="PersonType" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_TransportId" Association="TransportDBModel.FK_Person_TransportId">
+            <End Role="Transport" EntitySet="Transport" />
+            <End Role="Person" EntitySet="Person" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Fuel">
           <Key>
@@ -463,20 +463,6 @@
           <Property Name="FueldId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FuelName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Transport" Relationship="TransportDBModel.FK_Transport_FuelId" FromRole="Fuel" ToRole="Transport" />
-        </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="PersonId" />
-          </Key>
-          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonTypeId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="Int32" Nullable="false" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ExperienceWork" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PersonType" Relationship="TransportDBModel.FK_Person_PersonTypeId" FromRole="Person" ToRole="PersonType" />
-          <Property Name="TransportId" Type="Int32" />
-          <NavigationProperty Name="Transport" Relationship="TransportDBModel.FK_Person_TransportId" FromRole="Person" ToRole="Transport" />
         </EntityType>
         <EntityType Name="Route">
           <Key>
@@ -506,18 +492,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Person" Relationship="TransportDBModel.FK_Person_PersonTypeId" FromRole="PersonType" ToRole="Person" />
         </EntityType>
-        <Association Name="FK_Person_PersonTypeId">
-          <End Type="TransportDBModel.PersonType" Role="PersonType" Multiplicity="1" />
-          <End Type="TransportDBModel.Person" Role="Person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PersonType">
-              <PropertyRef Name="PersonTypeId" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="PersonTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Ticket_RouteId">
           <End Type="TransportDBModel.Route" Role="Route" Multiplicity="1" />
           <End Type="TransportDBModel.Ticket" Role="Ticket" Multiplicity="*" />
@@ -549,23 +523,11 @@
           <Property Name="FuelId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TransportTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="TransportDBModel.FK_Person_TransportId" FromRole="Transport" ToRole="Person" />
           <NavigationProperty Name="Fuel" Relationship="TransportDBModel.FK_Transport_FuelId" FromRole="Transport" ToRole="Fuel" />
           <NavigationProperty Name="Route" Relationship="TransportDBModel.FK_Transport_RouteId" FromRole="Transport" ToRole="Route" />
           <NavigationProperty Name="TransportType" Relationship="TransportDBModel.FK_Transport_TransportTypeId" FromRole="Transport" ToRole="TransportType" />
+          <NavigationProperty Name="Person" Relationship="TransportDBModel.FK_Person_TransportId" FromRole="Transport" ToRole="Person" />
         </EntityType>
-        <Association Name="FK_Person_TransportId">
-          <End Type="TransportDBModel.Transport" Role="Transport" Multiplicity="0..1" />
-          <End Type="TransportDBModel.Person" Role="Person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Transport">
-              <PropertyRef Name="TransportId" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="TransportId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Transport_FuelId">
           <End Type="TransportDBModel.Fuel" Role="Fuel" Multiplicity="1" />
           <End Type="TransportDBModel.Transport" Role="Transport" Multiplicity="*" />
@@ -599,6 +561,44 @@
             </Principal>
             <Dependent Role="Transport">
               <PropertyRef Name="TransportTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PersonId" />
+          </Key>
+          <Property Name="PersonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExperienceWork" Type="Int32" Nullable="false" />
+          <Property Name="TransportId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PersonType" Relationship="TransportDBModel.FK_Person_PersonTypeId" FromRole="Person" ToRole="PersonType" />
+          <NavigationProperty Name="Transport" Relationship="TransportDBModel.FK_Person_TransportId" FromRole="Person" ToRole="Transport" />
+        </EntityType>
+        <Association Name="FK_Person_PersonTypeId">
+          <End Type="TransportDBModel.PersonType" Role="PersonType" Multiplicity="1" />
+          <End Type="TransportDBModel.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonType">
+              <PropertyRef Name="PersonTypeId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="PersonTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_TransportId">
+          <End Type="TransportDBModel.Transport" Role="Transport" Multiplicity="0..1" />
+          <End Type="TransportDBModel.Person" Role="Person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transport">
+              <PropertyRef Name="TransportId" />
+            </Principal>
+            <Dependent Role="Person">
+              <PropertyRef Name="TransportId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -679,19 +679,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Person">
-            <EntityTypeMapping TypeName="TransportDBModel.Person">
-              <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="TransportId" ColumnName="TransportId" />
-                <ScalarProperty Name="ExperienceWork" ColumnName="ExperienceWork" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PersonTypeId" ColumnName="PersonTypeId" />
-                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Route">
             <EntityTypeMapping TypeName="TransportDBModel.Route">
               <MappingFragment StoreEntitySet="Route">
@@ -737,6 +724,19 @@
                 <ScalarProperty Name="EngineNumber" ColumnName="EngineNumber" />
                 <ScalarProperty Name="RouteId" ColumnName="RouteId" />
                 <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="TransportDBModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TransportId" ColumnName="TransportId" />
+                <ScalarProperty Name="ExperienceWork" ColumnName="ExperienceWork" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="PersonTypeId" ColumnName="PersonTypeId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -196,10 +196,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\TransportController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DAO\Person\IPersonDAO.cs" />
+    <Compile Include="DAO\Person\PersonDAO.cs" />
     <Compile Include="DAO\Route\IRouteDAO.cs" />
     <Compile Include="DAO\Route\RouteDAO.cs" />
     <Compile Include="DAO\Transport\ITransportDAO.cs" />
@@ -353,10 +356,13 @@
     <Content Include="Views\Transport\Edit.cshtml" />
     <Content Include="Views\Transport\Delete.cshtml" />
     <Content Include="Views\Transport\Create.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Person\Delete.cshtml" />
+    <Content Include="Views\Person\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAO\Person\" />
     <Folder Include="Views\Roles\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>

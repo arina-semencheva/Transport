@@ -13,5 +13,6 @@ namespace Transport.Models
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }
         public int ExperienceWork { get; set; }
+        public int TransportId { get; set; }
     }
 }

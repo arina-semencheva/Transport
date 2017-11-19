@@ -16,11 +16,11 @@ namespace Transport.DataModel
     {
         public int PersonId { get; set; }
         public int PersonTypeId { get; set; }
-        public int Name { get; set; }
         public string Surname { get; set; }
         public System.DateTime BirthDate { get; set; }
         public int ExperienceWork { get; set; }
         public Nullable<int> TransportId { get; set; }
+        public string Name { get; set; }
     
         public virtual PersonType PersonType { get; set; }
         public virtual Transport Transport { get; set; }
