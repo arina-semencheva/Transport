@@ -17,20 +17,20 @@ namespace Transport.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Transport()
         {
-            this.Person = new HashSet<Person>();
+            this.Routes = new HashSet<Route>();
         }
     
         public int TransportId { get; set; }
-        public int RouteId { get; set; }
         public string EngineNumber { get; set; }
         public int FuelId { get; set; }
         public string Name { get; set; }
         public int TransportTypeId { get; set; }
+        public int PersonId { get; set; }
     
         public virtual Fuel Fuel { get; set; }
-        public virtual Route Route { get; set; }
-        public virtual TransportType TransportType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person> Person { get; set; }
+        public virtual ICollection<Route> Routes { get; set; }
+        public virtual TransportType TransportType { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

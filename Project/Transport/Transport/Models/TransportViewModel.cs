@@ -16,5 +16,6 @@ namespace Transport.Models
         public string Fuel { get; set; }
         public TransporttypeViewModel TransportType { get; set; }
         public RouteViewModel Route { get; set; }
+        public PersonTypeViewModel Person { get; set; }
     }
 }

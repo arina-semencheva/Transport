@@ -17,13 +17,13 @@ namespace Transport.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Fuel()
         {
-            this.Transport = new HashSet<Transport>();
+            this.Transports = new HashSet<Transport>();
         }
     
         public int FueldId { get; set; }
         public string FuelName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transport> Transport { get; set; }
+        public virtual ICollection<Transport> Transports { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace Transport.DAO.RouteDAO
         public RouteDAO() { }
 
         public async Task<IEnumerable<RouteViewModel>> GetRoutes() =>
-            await _edmx.Route.Select(x => new RouteViewModel
+            await _edmx.Routes.Select(x => new RouteViewModel
             {
                 RouteId = x.RouteId,
                 FirstStop = x.FirstStop,
@@ -40,7 +40,7 @@ namespace Transport.DAO.RouteDAO
                     FirstStop = model.FirstStop,
                     LastStop = model.LastSport
                 };
-                _edmx.Route.Add(routeEntity);
+                _edmx.Routes.Add(routeEntity);
             }
             catch (Exception ex)
             {
@@ -53,9 +53,9 @@ namespace Transport.DAO.RouteDAO
         {
             try
             {
-                var routeEntity = await _edmx.Route
+                var routeEntity = await _edmx.Routes
                 .FirstOrDefaultAsync(x => x.RouteId == routeId);
-                _edmx.Route.Remove(routeEntity);
+                _edmx.Routes.Remove(routeEntity);
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace Transport.DAO.RouteDAO
         {
             try
             {
-                var routeEntity = await _edmx.Route.FirstOrDefaultAsync(x => x.RouteId == model.RouteId);
+                var routeEntity = await _edmx.Routes.FirstOrDefaultAsync(x => x.RouteId == model.RouteId);
                 routeEntity.FirstStop = model.FirstStop;
                 routeEntity.LastStop = model.LastSport;
             }
@@ -83,7 +83,7 @@ namespace Transport.DAO.RouteDAO
         =>
             await
             (
-            from route in _edmx.Route
+            from route in _edmx.Routes
             where route.RouteId == routeId
             select new RouteViewModel
             {

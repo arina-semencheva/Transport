@@ -205,6 +205,8 @@
     <Compile Include="DAO\Person\PersonDAO.cs" />
     <Compile Include="DAO\Route\IRouteDAO.cs" />
     <Compile Include="DAO\Route\RouteDAO.cs" />
+    <Compile Include="DAO\Ticket\ITicketDAO.cs" />
+    <Compile Include="DAO\Ticket\TicketDAO.cs" />
     <Compile Include="DAO\Transport\ITransportDAO.cs" />
     <Compile Include="DAO\Transport\TransportDAO.cs" />
     <Compile Include="DataModel\AspNetRoles.cs">

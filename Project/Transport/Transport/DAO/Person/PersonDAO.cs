@@ -20,7 +20,7 @@ namespace Transport.DAO.Person
 
         public async Task<IEnumerable<PersonViewModel>> GetPersons()
         {
-            var persons = await (from person in _edmx.Person
+            var persons = await (from person in _edmx.People
                                  select new PersonViewModel
                                  {
                                      PersonId = person.PersonId,
@@ -31,7 +31,7 @@ namespace Transport.DAO.Person
                                      PersonType = new PersonTypeViewModel
                                      {
                                          PersonTypeId = person.PersonTypeId,
-                                         PersonTypeName = _edmx.PersonType.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
+                                         PersonTypeName = _edmx.PersonTypes.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
                                      },
                                      PersonTypeId = person.PersonTypeId
                                  })
@@ -50,13 +50,13 @@ namespace Transport.DAO.Person
                 PersonTypeId = model.PersonType.PersonTypeId,
                 TransportId = model.TransportId
             };
-            _edmx.Person.Add(person);
+            _edmx.People.Add(person);
             await _edmx.SaveChangesAsync();
         }
 
         public async Task DeletePerson(int personId)
         {
-            var personEntity = await _edmx.Person.FirstOrDefaultAsync(x => x.PersonId == personId);
+            var personEntity = await _edmx.People.FirstOrDefaultAsync(x => x.PersonId == personId);
             if (personEntity == null)
                 throw new Exception("Ooouupess!");
             await _edmx.SaveChangesAsync();
@@ -64,7 +64,7 @@ namespace Transport.DAO.Person
 
         public async Task EditPerson(PersonViewModel model)
         {
-            var personEntity = await (from person in _edmx.Person
+            var personEntity = await (from person in _edmx.People
                                       where person.PersonId == model.PersonId
                                       select person)
                                       .FirstOrDefaultAsync();
@@ -80,7 +80,7 @@ namespace Transport.DAO.Person
 
         public async Task<PersonViewModel> GetPersonById(int personId)
         {
-            var personEntity = await (from person in _edmx.Person
+            var personEntity = await (from person in _edmx.People
                                       where person.PersonId == personId
                                       select new PersonViewModel
                                       {
@@ -92,13 +92,8 @@ namespace Transport.DAO.Person
                                           PersonType = new PersonTypeViewModel
                                           {
                                               PersonTypeId = person.PersonTypeId,
-                                              PersonTypeName = _edmx.PersonType.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
-                                          },
-                                          PersonTypeId = person.PersonTypeId,
-                                          TransportId = _edmx.Transport.FirstOrDefault(
-                                              x => x.Person.FirstOrDefault(y => y.PersonId == personId
-                                              ).PersonId == person.PersonId)
-                                              .TransportId
+                                              PersonTypeName = _edmx.PersonTypes.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
+                                          }
                                       })
                                  .FirstOrDefaultAsync();
             return personEntity;

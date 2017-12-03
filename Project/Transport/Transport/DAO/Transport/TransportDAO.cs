@@ -27,14 +27,14 @@ namespace Transport.DAO
 
         public async Task<IEnumerable<TransportViewModel>> GetTransports()
         {
-            var transports = await (from transport in _edmx.Transport
+            var transports = await (from transport in _edmx.Transports
                                     select new TransportViewModel
                                     {
                                         TransportId = transport.TransportId,
                                         TransportName = transport.Name,
                                         EngineNumber = transport.EngineNumber,
                                         FuelId = transport.FuelId,
-                                        Fuel = _edmx.Fuel.FirstOrDefault(y => y.FueldId == transport.FuelId).FuelName                                       
+                                        Fuel = _edmx.Fuels.FirstOrDefault(y => y.FueldId == transport.FuelId).FuelName
                                     })
                               .ToListAsync();
             return transports;
@@ -49,15 +49,15 @@ namespace Transport.DAO
                 FuelId = model.FuelId,
                 TransportTypeId = model.TransportType.TransportTypeId
             };
-            _edmx.Transport.Add(transportEntity);
+            _edmx.Transports.Add(transportEntity);
             await _edmx.SaveChangesAsync();
         }
 
         public async Task DeleteTransport(int transportId)
         {
-            var transportentity = await _edmx.Transport.FirstOrDefaultAsync(x => x.TransportId == transportId);
+            var transportentity = await _edmx.Transports.FirstOrDefaultAsync(x => x.TransportId == transportId);
             if (transportentity != null)
-                _edmx.Transport.Remove(transportentity);
+                _edmx.Transports.Remove(transportentity);
             else
                 throw new NotSupportedException("Ouuos!!!");
             await _edmx.SaveChangesAsync();
@@ -65,28 +65,27 @@ namespace Transport.DAO
 
         public async Task EditTransport(TransportViewModel model)
         {
-            var transportEntity = await _edmx.Transport.FirstOrDefaultAsync(x => x.TransportId == model.TransportId);
+            var transportEntity = await _edmx.Transports.FirstOrDefaultAsync(x => x.TransportId == model.TransportId);
             if (transportEntity == null)
                 throw new Exception("Ouups!!!");
             transportEntity.Name = model.TransportName;
             transportEntity.FuelId = model.FuelId;
             transportEntity.TransportTypeId = model.TransportType.TransportTypeId;
             transportEntity.EngineNumber = model.EngineNumber;
-            transportEntity.RouteId = model.RouteId;
+            //transportEntity.
             await _edmx.SaveChangesAsync();
         }
 
 
         public async Task<TransportViewModel> GetTransportById(int transportId)
         {
-            var transportEntity = await _edmx.Transport.Where(x => x.TransportId == transportId)
+            var transportEntity = await _edmx.Transports.Where(x => x.TransportId == transportId)
                 .Select(x => new TransportViewModel
                 {
                     TransportId = x.TransportId,
                     TransportName = x.Name,
                     EngineNumber = x.EngineNumber,
-                    FuelId = x.FuelId,
-                    RouteId = x.RouteId
+                    FuelId = x.FuelId
                 })
                 .FirstOrDefaultAsync();
             if (transportEntity == null)

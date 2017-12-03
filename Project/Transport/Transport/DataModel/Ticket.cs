@@ -18,7 +18,9 @@ namespace Transport.DataModel
         public int RouteId { get; set; }
         public string UserId { get; set; }
         public int PurchaseDate { get; set; }
+        public int PersonId { get; set; }
     
         public virtual Route Route { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

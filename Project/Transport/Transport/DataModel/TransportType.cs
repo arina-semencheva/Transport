@@ -17,7 +17,7 @@ namespace Transport.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TransportType()
         {
-            this.Transport = new HashSet<Transport>();
+            this.Transports = new HashSet<Transport>();
         }
     
         public int TransportTypeId { get; set; }
@@ -25,6 +25,6 @@ namespace Transport.DataModel
         public Nullable<System.DateTime> Year { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transport> Transport { get; set; }
+        public virtual ICollection<Transport> Transports { get; set; }
     }
 }
