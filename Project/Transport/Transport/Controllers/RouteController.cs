@@ -14,6 +14,7 @@ namespace Transport.Controllers
     {
 
         private RouteDAO _routeDAO = new RouteDAO();
+        TransportDBEntities _edm = new TransportDBEntities();
 
         public RouteController()
         {
@@ -29,13 +30,28 @@ namespace Transport.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int routeId)
         {
+            var transports = _edm.Transports.Select(x => new TransportViewModel
+            {
+                TransportId = x.TransportId,
+                TransportName = x.Name
+            }).ToList();
+            var tss = new SelectList(transports, "TransportId", "TransportName");
+            var persons = _edm.People.Select(x => new PersonViewModel
+            {
+                PersonId = x.PersonId,
+                Name = x.Name,
+                Surname = x.Surname
+            }).ToList();
+            var pss = new SelectList(persons, "PersonId", "Person");
+            ViewBag.Transports = tss;
+            ViewBag.Persons = pss;
             var route = await _routeDAO.GetRouteById(routeId);
             return View(route);
         }
 
         [HttpPost]
         public async Task<ActionResult> Edit(RouteViewModel model)
-        {
+        {          
             if (ModelState.IsValid && model != null)
             {
                 await _routeDAO.EditRoute(model);
@@ -66,6 +82,21 @@ namespace Transport.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var transports = _edm.Transports.Select(x => new TransportViewModel
+            {
+                TransportId = x.TransportId,
+                TransportName = x.Name
+            }).ToList();
+            var tss = new SelectList(transports, "TransportId", "TransportName");
+            var persons = _edm.People.Select(x => new PersonViewModel
+            {
+                PersonId = x.PersonId,
+                Name = x.Name,
+                Surname = x.Surname
+            }).ToList();
+            var pss = new SelectList(persons, "PersonId", "Person");
+            ViewBag.Transports = tss;
+            ViewBag.Persons = pss;
             return View();
         }
 

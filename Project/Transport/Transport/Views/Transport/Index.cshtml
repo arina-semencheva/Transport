@@ -12,22 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TransportId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RouteId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FuelId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.TransportName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EngineNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PersonId)
+            Person
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Fuel)
@@ -35,35 +26,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransportId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RouteId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FuelId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransportName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EngineNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fuel)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { transportId = item.TransportId}) |
-            @Html.ActionLink("Details", "Details", new { transportId = item.TransportId }) |
-            @Html.ActionLink("Delete", "Delete", new { transportId = item.TransportId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransportName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Person)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fuel)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { transportId = item.TransportId }) |
+                @Html.ActionLink("Details", "Details", new { transportId = item.TransportId }) |
+                @Html.ActionLink("Delete", "Delete", new { transportId = item.TransportId })
+            </td>
+        </tr>
+    }
 
 </table>

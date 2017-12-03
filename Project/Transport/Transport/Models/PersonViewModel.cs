@@ -15,5 +15,7 @@ namespace Transport.Models
         public int ExperienceWork { get; set; }
         public int TransportId { get; set; }
         public int PersonTypeId { get; set; }
+        public string Person => $"{Name} {Surname}";
+        public TransportViewModel Transport { get; set; }
     }
 }

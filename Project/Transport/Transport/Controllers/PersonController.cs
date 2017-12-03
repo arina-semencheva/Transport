@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Transport.DAO.Person;
+using Transport.DataModel;
 using Transport.Models;
 
 namespace Transport.Controllers
@@ -12,6 +13,7 @@ namespace Transport.Controllers
     public class PersonController : Controller
     {
         PersonDAO _personDAO = new PersonDAO();
+        TransportDBEntities _edm = new TransportDBEntities();
 
         // GET: Person
         public async Task<ActionResult> Index()
@@ -23,6 +25,20 @@ namespace Transport.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int personId)
         {
+            var transports = _edm.Transports.Select(x => new TransportViewModel
+            {
+                TransportId = x.TransportId,
+                TransportName = x.Name
+            }).ToList();
+            var tss = new SelectList(transports, "TransportId", "TransportName");
+            var personTypes = _edm.PersonTypes.Select(x => new PersonTypeViewModel
+            {
+                PersonTypeId = x.PersonTypeId,
+                PersonTypeName = x.Name
+            });
+            var pts = new SelectList(personTypes, "PersonTypeId", "PersonTypeName");
+            ViewBag.Transports = tss;
+            ViewBag.PersonTypes = pts;
             var person = await _personDAO.GetPersonById(personId);
             return View(person);
         }
@@ -60,6 +76,22 @@ namespace Transport.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var transports = _edm.Transports.Select(x => new TransportViewModel
+            {
+                TransportId = x.TransportId,
+                TransportName = x.Name
+            }).ToList();
+            var tss = new SelectList(transports, "TransportId", "TransportName");
+            var personTypes = _edm.PersonTypes
+                .Where(x => x.PersonTypeId != 3)
+                .Select(x => new PersonTypeViewModel
+                {
+                    PersonTypeId = x.PersonTypeId,
+                    PersonTypeName = x.Name
+                });
+            var pts = new SelectList(personTypes, "PersonTypeId", "PersonTypeName");
+            ViewBag.Transports = tss;
+            ViewBag.PersonTypes = pts;
             return View();
         }
 

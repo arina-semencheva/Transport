@@ -21,6 +21,7 @@ namespace Transport.DAO.Person
         public async Task<IEnumerable<PersonViewModel>> GetPersons()
         {
             var persons = await (from person in _edmx.People
+                                 where person.PersonTypeId != 3
                                  select new PersonViewModel
                                  {
                                      PersonId = person.PersonId,
@@ -33,7 +34,12 @@ namespace Transport.DAO.Person
                                          PersonTypeId = person.PersonTypeId,
                                          PersonTypeName = _edmx.PersonTypes.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
                                      },
-                                     PersonTypeId = person.PersonTypeId
+                                     PersonTypeId = person.PersonTypeId,
+                                     Transport = new TransportViewModel
+                                     {
+                                         TransportId = person.TransportId,
+                                         TransportName = person.Transports.FirstOrDefault(x => x.PersonId == person.PersonId).Name
+                                     }
                                  })
                                  .ToListAsync();
             return persons;
@@ -93,6 +99,11 @@ namespace Transport.DAO.Person
                                           {
                                               PersonTypeId = person.PersonTypeId,
                                               PersonTypeName = _edmx.PersonTypes.FirstOrDefault(x => x.PersonTypeId == person.PersonTypeId).Name
+                                          },
+                                          Transport = new TransportViewModel
+                                          {
+                                              TransportId = person.TransportId,
+                                              TransportName = person.Transports.FirstOrDefault(x => x.PersonId == person.PersonId).Name
                                           }
                                       })
                                  .FirstOrDefaultAsync();

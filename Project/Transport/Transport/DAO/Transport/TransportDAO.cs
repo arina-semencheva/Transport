@@ -34,7 +34,13 @@ namespace Transport.DAO
                                         TransportName = transport.Name,
                                         EngineNumber = transport.EngineNumber,
                                         FuelId = transport.FuelId,
-                                        Fuel = _edmx.Fuels.FirstOrDefault(y => y.FueldId == transport.FuelId).FuelName
+                                        Fuel = _edmx.Fuels.FirstOrDefault(y => y.FueldId == transport.FuelId).FuelName,
+                                        Person = new PersonViewModel
+                                        {
+                                            PersonId = transport.PersonId,
+                                            Name = transport.Person.Name,
+                                            Surname = transport.Person.Surname
+                                        }
                                     })
                               .ToListAsync();
             return transports;
@@ -85,7 +91,8 @@ namespace Transport.DAO
                     TransportId = x.TransportId,
                     TransportName = x.Name,
                     EngineNumber = x.EngineNumber,
-                    FuelId = x.FuelId
+                    FuelId = x.FuelId,
+                    Fuel = x.Fuel.FuelName
                 })
                 .FirstOrDefaultAsync();
             if (transportEntity == null)

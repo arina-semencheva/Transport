@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Transport.DAO;
+using Transport.DataModel;
 using Transport.Models;
 
 namespace Transport.Controllers
@@ -12,7 +13,7 @@ namespace Transport.Controllers
     public class TransportController : Controller
     {
         private TransportDAO _transport = new TransportDAO();
-
+        private TransportDBEntities _edm = new TransportDBEntities();
         public TransportController()
         {
 
@@ -28,6 +29,13 @@ namespace Transport.Controllers
         [HttpGet]
         public async Task<ActionResult> Edit(int transportId)
         {
+            var fuels = _edm.Fuels.Select(x => new FuleViewModel
+            {
+                FuelId = x.FueldId,
+                Name = x.FuelName
+            }).ToList();
+            var fss = new SelectList(fuels, "FuelId", "Name");
+            ViewBag.Fuels = fss;
             var transport = await _transport.GetTransportById(transportId);
             return View(transport);
         }
@@ -56,7 +64,7 @@ namespace Transport.Controllers
         {
             if (ModelState.IsValid && model != null)
 
-                await _transport.DeleteTransport(model.TransportId);
+                await _transport.DeleteTransport(model.TransportId.Value);
             else
                 throw new Exception("Входной параметр не определен");
             return RedirectToAction("Index");
@@ -65,6 +73,13 @@ namespace Transport.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            var fuels = _edm.Fuels.Select(x => new FuleViewModel
+            {
+                FuelId = x.FueldId,
+                Name = x.FuelName
+            }).ToList();
+            var fss = new SelectList(fuels, "FuelId", "Name");
+            ViewBag.Fuels = fss;
             return View();
         }
 

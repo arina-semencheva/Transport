@@ -12,52 +12,48 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PersonId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Surname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            Birth date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ExperienceWork)
+            Experience work
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TransportId)
+            Transport
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BirthDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExperienceWork)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TransportId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { personId = item.PersonId }) |
-            @Html.ActionLink("Details", "Details", new { personId = item.PersonId }) |
-            @Html.ActionLink("Delete", "Delete", new { personId = item.PersonId })
-        </td>
-    </tr>
+        <tr>
+
+            @Html.HiddenFor(modelItem => item.PersonId)
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExperienceWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Transport.TransportName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { personId = item.PersonId }) |
+                @Html.ActionLink("Delete", "Delete", new { personId = item.PersonId })
+            </td>
+        </tr>
     }
 </table>

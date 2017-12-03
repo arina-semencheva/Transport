@@ -25,7 +25,23 @@ namespace Transport.DAO.RouteDAO
             {
                 RouteId = x.RouteId,
                 FirstStop = x.FirstStop,
-                LastSport = x.LastStop
+                LastSport = x.LastStop,
+                Transport = new TransportViewModel
+                {
+                    TransportId = x.TransportId,
+                    TransportName = x.Transport.Name
+                },
+                Person = new PersonViewModel
+                {
+                    PersonId = x.Transport.PersonId,
+                    Name = x.Transport.Person.Name,
+                    Surname = x.Transport.Person.Surname,
+                    PersonType = new PersonTypeViewModel
+                    {
+                        PersonTypeId = x.Transport.Person.PersonTypeId,
+                        PersonTypeName = x.Transport.Person.PersonType.Name
+                    }
+                }
             })
             .ToListAsync();
 
@@ -71,28 +87,19 @@ namespace Transport.DAO.RouteDAO
                 var routeEntity = await _edmx.Routes.FirstOrDefaultAsync(x => x.RouteId == model.RouteId);
                 routeEntity.FirstStop = model.FirstStop;
                 routeEntity.LastStop = model.LastSport;
+                routeEntity.TransportId = model.Transport.TransportId.Value > 0 ? model.Transport.TransportId.Value : routeEntity.TransportId;
+                routeEntity.Transport.PersonId = model.Person.PersonId > 0 ? model.Person.PersonId : routeEntity.Transport.PersonId;
+                await _edmx.SaveChangesAsync();
             }
             catch (Exception ex)
             {
 
             }
-            await _edmx.SaveChangesAsync();
         }
 
         public async Task<RouteViewModel> GetRouteById(int routeId)
         =>
-            await
-            (
-            from route in _edmx.Routes
-            where route.RouteId == routeId
-            select new RouteViewModel
-            {
-                RouteId = route.RouteId,
-                FirstStop = route.FirstStop,
-                LastSport = route.LastStop
-            }
-            )
-            .FirstOrDefaultAsync();
+            (await GetRoutes()).FirstOrDefault(x => x.RouteId == routeId);
 
     }
 }

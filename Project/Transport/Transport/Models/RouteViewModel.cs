@@ -10,5 +10,7 @@ namespace Transport.Models
         public int RouteId { get; set; }
         public string FirstStop { get; set; }
         public string LastSport { get; set; }
+        public TransportViewModel Transport { get; set; }
+        public PersonViewModel Person { get; set; }
     }
 }
