@@ -5,7 +5,8 @@ using System.Web;
 
 namespace Transport.DAO.Ticket
 {
-    public class TicketDAO : ITicketDAO
+    public class TicketDAO 
     {
+
     }
 }

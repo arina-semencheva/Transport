@@ -27,10 +27,12 @@ namespace Transport.DataModel
         public int ExperienceWork { get; set; }
         public Nullable<int> TransportId { get; set; }
         public string Name { get; set; }
+        public string UserId { get; set; }
     
         public virtual PersonType PersonType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transport> Transports { get; set; }
+        public virtual AspNetUsers AspNetUser { get; set; }
         public virtual Ticket Ticket { get; set; }
     }
 }

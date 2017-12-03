@@ -199,6 +199,7 @@
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\TransportController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DAO\Person\IPersonDAO.cs" />
@@ -366,6 +367,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Roles\" />
+    <Folder Include="Views\Ticket\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
