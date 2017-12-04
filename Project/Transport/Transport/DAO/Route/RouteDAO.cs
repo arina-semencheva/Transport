@@ -33,15 +33,16 @@ namespace Transport.DAO.RouteDAO
                 },
                 Person = new PersonViewModel
                 {
-                    PersonId = x.Transport.PersonId,
-                    Name = x.Transport.Person.Name,
-                    Surname = x.Transport.Person.Surname,
+                    PersonId = x.Transport.People.FirstOrDefault(y => y.TransportId == x.TransportId).PersonId,
+                    Name = x.Transport.People.FirstOrDefault(y => y.TransportId == x.TransportId).Name,
+                    Surname = x.Transport.People.FirstOrDefault(y => y.TransportId == x.TransportId).Surname,
                     PersonType = new PersonTypeViewModel
                     {
-                        PersonTypeId = x.Transport.Person.PersonTypeId,
-                        PersonTypeName = x.Transport.Person.PersonType.Name
+                        PersonTypeId = x.Transport.People.FirstOrDefault(y => y.TransportId == x.TransportId).PersonTypeId,
+                        PersonTypeName = x.Transport.People.FirstOrDefault(y => y.TransportId == x.TransportId).PersonType.Name
                     }
-                }
+                },
+                TicketCount = x.TicketCount
             })
             .ToListAsync();
 
@@ -54,7 +55,9 @@ namespace Transport.DAO.RouteDAO
                 var routeEntity = new Route
                 {
                     FirstStop = model.FirstStop,
-                    LastStop = model.LastSport
+                    LastStop = model.LastSport,
+                    TicketCount = model.TicketCount,
+                    TransportId = model.Transport.TransportId.Value
                 };
                 _edmx.Routes.Add(routeEntity);
             }
@@ -88,7 +91,8 @@ namespace Transport.DAO.RouteDAO
                 routeEntity.FirstStop = model.FirstStop;
                 routeEntity.LastStop = model.LastSport;
                 routeEntity.TransportId = model.Transport.TransportId.Value > 0 ? model.Transport.TransportId.Value : routeEntity.TransportId;
-                routeEntity.Transport.PersonId = model.Person.PersonId > 0 ? model.Person.PersonId : routeEntity.Transport.PersonId;
+                //routeEntity.Transport.People.PersonId = model.Person.PersonId > 0 ? model.Person.PersonId : routeEntity.Transport.PersonId;
+                routeEntity.TicketCount = model.TicketCount;
                 await _edmx.SaveChangesAsync();
             }
             catch (Exception ex)

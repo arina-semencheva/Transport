@@ -363,11 +363,11 @@
     <Content Include="Views\Person\Delete.cshtml" />
     <Content Include="Views\Person\Create.cshtml" />
     <Content Include="Views\Person\Edit.cshtml" />
+    <Content Include="Views\Ticket\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Roles\" />
-    <Folder Include="Views\Ticket\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>

@@ -36,6 +36,13 @@ namespace Transport.Controllers
             }).ToList();
             var fss = new SelectList(fuels, "FuelId", "Name");
             ViewBag.Fuels = fss;
+            var transportTypes = _edm.TransportTypes.Select(x => new TransporttypeViewModel
+            {
+                TransportTypeId = x.TransportTypeId,
+                TransportTypeName = x.TransportTypeName
+            }).ToList();
+            var tt = new SelectList(transportTypes, "TransportTypeId", "TransportTypeName");
+            ViewBag.TransportTypes = tt;
             var transport = await _transport.GetTransportById(transportId);
             return View(transport);
         }
@@ -79,7 +86,15 @@ namespace Transport.Controllers
                 Name = x.FuelName
             }).ToList();
             var fss = new SelectList(fuels, "FuelId", "Name");
+            var transportTypes = _edm.TransportTypes.Select(x => new TransporttypeViewModel
+            {
+                TransportTypeId = x.TransportTypeId,
+                TransportTypeName = x.TransportTypeName
+            })
+            .ToList();
+            var tt = new SelectList(transportTypes, "TransportTypeId", "TransportTypeName");
             ViewBag.Fuels = fss;
+            ViewBag.TransportTypes = tt;
             return View();
         }
 

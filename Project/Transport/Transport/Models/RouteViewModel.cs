@@ -12,5 +12,6 @@ namespace Transport.Models
         public string LastSport { get; set; }
         public TransportViewModel Transport { get; set; }
         public PersonViewModel Person { get; set; }
+        public int? TicketCount { get; set; }
     }
 }

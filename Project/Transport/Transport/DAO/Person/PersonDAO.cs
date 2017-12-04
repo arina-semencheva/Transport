@@ -38,7 +38,7 @@ namespace Transport.DAO.Person
                                      Transport = new TransportViewModel
                                      {
                                          TransportId = person.TransportId,
-                                         TransportName = person.Transports.FirstOrDefault(x => x.PersonId == person.PersonId).Name
+                                         TransportName = person.Transport.Name
                                      }
                                  })
                                  .ToListAsync();
@@ -53,8 +53,8 @@ namespace Transport.DAO.Person
                 Surname = model.Surname,
                 BirthDate = model.BirthDate,
                 ExperienceWork = model.ExperienceWork,
-                PersonTypeId = model.PersonType.PersonTypeId,
-                TransportId = model.TransportId
+                PersonTypeId = model.PersonTypeId,
+                TransportId = model.Transport.TransportId
             };
             _edmx.People.Add(person);
             await _edmx.SaveChangesAsync();
@@ -103,7 +103,7 @@ namespace Transport.DAO.Person
                                           Transport = new TransportViewModel
                                           {
                                               TransportId = person.TransportId,
-                                              TransportName = person.Transports.FirstOrDefault(x => x.PersonId == person.PersonId).Name
+                                              TransportName = person.Transport.Name
                                           }
                                       })
                                  .FirstOrDefaultAsync();

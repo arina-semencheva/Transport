@@ -37,9 +37,9 @@ namespace Transport.DAO
                                         Fuel = _edmx.Fuels.FirstOrDefault(y => y.FueldId == transport.FuelId).FuelName,
                                         Person = new PersonViewModel
                                         {
-                                            PersonId = transport.PersonId,
-                                            Name = transport.Person.Name,
-                                            Surname = transport.Person.Surname
+                                            PersonId = _edmx.People.FirstOrDefault(x => x.TransportId == transport.TransportId) != null ? _edmx.People.FirstOrDefault(x => x.TransportId == transport.TransportId).PersonId : -1,
+                                            Name = _edmx.People.FirstOrDefault(x => x.TransportId == transport.TransportId) != null? _edmx.People.FirstOrDefault(x => x.TransportId == transport.TransportId).Name : "Empty",
+                                            Surname = _edmx.People.FirstOrDefault(x => x.TransportId == transport.TransportId) != null ? _edmx.People.FirstOrDefault(x => x.TransportId == transport.TransportId).Surname : "Empty"
                                         }
                                     })
                               .ToListAsync();

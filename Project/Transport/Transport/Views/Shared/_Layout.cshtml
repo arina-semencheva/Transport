@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Welcome to Booking Ticktes</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -27,6 +27,7 @@
                     <li>@Html.ActionLink("Routes", "Index", "Route")</li>
                     <li>@Html.ActionLink("Transports", "Index", "Transport")</li>
                     <li>@Html.ActionLink("Persons", "Index", "Person")</li>
+                    <li>@Html.ActionLink("Tickets", "Index", "Ticket")</li> <!--здесь нужно будет пробросить параметр - id текущего пользователя-->
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

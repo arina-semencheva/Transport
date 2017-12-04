@@ -17,6 +17,7 @@ namespace Transport.DataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Transport()
         {
+            this.People = new HashSet<Person>();
             this.Routes = new HashSet<Route>();
         }
     
@@ -25,12 +26,12 @@ namespace Transport.DataModel
         public int FuelId { get; set; }
         public string Name { get; set; }
         public int TransportTypeId { get; set; }
-        public int PersonId { get; set; }
     
-        public virtual Fuel Fuel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Person> People { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Route> Routes { get; set; }
         public virtual TransportType TransportType { get; set; }
-        public virtual Person Person { get; set; }
+        public virtual Fuel Fuel { get; set; }
     }
 }

@@ -24,9 +24,10 @@ namespace Transport.DataModel
         public string FirstStop { get; set; }
         public string LastStop { get; set; }
         public int TransportId { get; set; }
+        public Nullable<int> TicketCount { get; set; }
     
-        public virtual Transport Transport { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ticket> Tickets { get; set; }
+        public virtual Transport Transport { get; set; }
     }
 }

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Transport.Models.TicketViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Person
+        </th>
+        <th>
+            Person Birth Date
+        </th>
+        <th>
+            Route First Stop
+        </th>
+        <th>
+            Route Last Stop
+        </th>
+        <th>
+            Transport
+        </th>
+        <th>
+            Transport Type
+        </th>
+        <th>
+            Purchase Date
+        </th>
+        <th>
+            Ticket State
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            @Html.HiddenFor(modelItem => item.TicketId)
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Person)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Route.FirstStop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Route.LastSport)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Route.Transport.TransportName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Route.Transport.TransportType.TransportTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TicketState)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>
