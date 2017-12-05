@@ -70,6 +70,9 @@ namespace Transport.DAO.Ticket
                 TicketState = "Booked"
             };
             _edm.Tickets.Add(ticket);
+            var routeEntity = _edm.Routes.FirstOrDefault(x => x.RouteId == model.Route.RouteId);
+            int count = routeEntity.TicketCount.Value - 1;
+            routeEntity.TicketCount = count;
             _edm.SaveChanges();
         }
 
@@ -88,6 +91,10 @@ namespace Transport.DAO.Ticket
             if (ticket == null)
                 throw new Exception("Билет не найден");
             ticket.TicketState = "Canceled";
+            var route = ticket.Route;
+            var ticketsCount = route.TicketCount + 1;
+            route.TicketCount = ticketsCount;
+            _edm.SaveChanges();
         }
 
         public void RemoveTicket(int id)
@@ -95,6 +102,9 @@ namespace Transport.DAO.Ticket
             var ticket = _edm.Tickets.FirstOrDefault(x => x.TicketId == id);
             if (ticket == null)
                 throw new Exception("Билет не найден");
+            var route = ticket.Route;
+            var ticketsCount = route.TicketCount + 1;
+            route.TicketCount = ticketsCount;
             _edm.Tickets.Remove(ticket);
             _edm.SaveChanges();
         }

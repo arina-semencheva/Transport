@@ -27,7 +27,18 @@
                     <li>@Html.ActionLink("Routes", "Index", "Route")</li>
                     <li>@Html.ActionLink("Transports", "Index", "Transport")</li>
                     <li>@Html.ActionLink("Persons", "Index", "Person")</li>
-                    <li>@Html.ActionLink("Tickets", "Index", "Ticket")</li> <!--здесь нужно будет пробросить параметр - id текущего пользователя-->
+                    <li>
+                        @if (User.IsInRole("Client"))
+                        {
+                            @Html.ActionLink("My tickets", "Index", "Ticket")
+                        }
+                    </li>
+                    <li>
+                        @if (!User.IsInRole("Client"))
+                        {
+                            @Html.ActionLink("Tickets", "Index", "Ticket")
+                        }
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

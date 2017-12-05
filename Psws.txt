@@ -1,0 +1,19 @@
+Role:
+Client
+UserName: client@client.ru
+psw: Qwerty_123
+
+Role:
+Client
+UserName: client2@client2.ru
+psw: Qwerty_123
+
+Role:
+Adminitration
+UserName: admin@admin.ru
+psw: Qwerty_123
+
+Role:
+Dispetcher
+UserName:  disp@disp.ru
+psw: Qwerty_123

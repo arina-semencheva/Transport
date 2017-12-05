@@ -54,7 +54,8 @@ namespace Transport.DAO.Person
                 BirthDate = model.BirthDate,
                 ExperienceWork = model.ExperienceWork,
                 PersonTypeId = model.PersonTypeId,
-                TransportId = model.Transport.TransportId
+                TransportId = model.Transport == null ? null : model.Transport.TransportId,
+                UserId = model.UserId
             };
             _edmx.People.Add(person);
             await _edmx.SaveChangesAsync();

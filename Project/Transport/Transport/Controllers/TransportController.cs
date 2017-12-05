@@ -10,6 +10,7 @@ using Transport.Models;
 
 namespace Transport.Controllers
 {
+    [Authorize]
     public class TransportController : Controller
     {
         private TransportDAO _transport = new TransportDAO();
@@ -19,7 +20,7 @@ namespace Transport.Controllers
 
         }
 
-        // GET: Transport
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             var transports = await _transport.GetTransports();
@@ -27,6 +28,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administration,Dispetcher")]
         public async Task<ActionResult> Edit(int transportId)
         {
             var fuels = _edm.Fuels.Select(x => new FuleViewModel
@@ -48,6 +50,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administration,Dispetcher")]
         public async Task<ActionResult> Edit(TransportViewModel model)
         {
             if (ModelState.IsValid && model != null)
@@ -60,6 +63,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administration,Dispetcher")]
         public async Task<ActionResult> Delete(int transportId)
         {
             var transport = await _transport.GetTransportById(transportId);
@@ -67,6 +71,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administration,Dispetcher")]
         public async Task<ActionResult> Delete(TransportViewModel model)
         {
             if (ModelState.IsValid && model != null)
@@ -78,6 +83,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administration,Dispetcher")]
         public ActionResult Create()
         {
             var fuels = _edm.Fuels.Select(x => new FuleViewModel
@@ -99,6 +105,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administration,Dispetcher")]
         public async Task<ActionResult> Create(TransportViewModel model)
         {
             if (ModelState.IsValid && model != null)

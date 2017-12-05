@@ -14,6 +14,12 @@ namespace Transport.DataModel
     
     public partial class Person
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Person()
+        {
+            this.Tickets = new HashSet<Ticket>();
+        }
+    
         public int PersonId { get; set; }
         public int PersonTypeId { get; set; }
         public string Surname { get; set; }
@@ -25,7 +31,8 @@ namespace Transport.DataModel
     
         public virtual AspNetUsers AspNetUser { get; set; }
         public virtual Transport Transport { get; set; }
-        public virtual Ticket Ticket { get; set; }
         public virtual PersonType PersonType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

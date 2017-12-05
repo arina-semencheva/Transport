@@ -7,7 +7,13 @@
 <h2>Routes</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("Dispetcher") || User.IsInRole("Administration"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+
+    You booked<span class="" id="booked-count">0</span> ticktet(s)
+
 </p>
 <table class="table">
     <tr>
@@ -18,10 +24,10 @@
             @Html.DisplayNameFor(model => model.LastSport)
         </th>
         <th>
-            Tickets Count
+            Transport
         </th>
         <th>
-            Transport
+            Tickets Count
         </th>
         <th>
             Person
@@ -56,10 +62,34 @@
                 @Html.DisplayFor(modelItem => item.Person.PersonType.PersonTypeName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { routeId = item.RouteId }) |
-                @Html.ActionLink("Delete", "Delete", new { routeId = item.RouteId })
+                @if (User.IsInRole("Dispetcher") || User.IsInRole("Administration"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { routeId = item.RouteId })
+                }
+                |
+                @if (User.IsInRole("Dispetcher") || User.IsInRole("Administration"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { routeId = item.RouteId })
+                }
+                @Html.ActionLink("Book It", "BookTicket", "Ticket", new { routeId = item.RouteId }, new AjaxOptions { UpdateTargetId = "message_box" })
             </td>
         </tr>
     }
 
 </table>
+
+<script type="text/javascript">
+
+
+    var ticketsCount = '@ViewBag.Tickets';
+
+    $(document).ready(function () {
+        changeCount();
+    });
+
+    function changeCount() {
+        $("#booked-count").text(ticketsCount);
+    }
+
+
+</script>

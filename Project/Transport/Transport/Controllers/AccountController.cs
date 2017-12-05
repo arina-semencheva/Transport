@@ -9,6 +9,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Transport.Models;
+using System.Collections.Generic;
+using Transport.DataModel;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Transport.DAO.Person;
 
 namespace Transport.Controllers
 {
@@ -17,6 +21,8 @@ namespace Transport.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private TransportDBEntities _edm = new TransportDBEntities();
+        private PersonDAO _person = new PersonDAO();
 
         public AccountController()
         {
@@ -135,6 +141,12 @@ namespace Transport.Controllers
             return View();
         }
 
+        private IEnumerable<AspNetRoles> GetRoles()
+        {
+            var roles = _edm.AspNetRoles.Select(x => x).ToList();
+            return roles;
+        }
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -144,11 +156,21 @@ namespace Transport.Controllers
         {
             if (ModelState.IsValid)
             {
+                var roles = GetRoles();
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                IdentityUserRole role = new IdentityUserRole
+                {
+                    RoleId = "Client",
+                    UserId = user.Id
+                };
+                user.Roles.Add(role);
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    model.Person.UserId = user.Id;
+                    model.Person.PersonTypeId = 3;
+                    await _person.CreatePerson(model.Person);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -327,7 +349,7 @@ namespace Transport.Controllers
             }
 
             if (ModelState.IsValid)
-            {              
+            {
                 var info = await AuthenticationManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {

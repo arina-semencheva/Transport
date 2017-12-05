@@ -16,18 +16,18 @@
         <EntityTypeShape EntityType="TransportDBModel.PersonType" Width="1.5" PointX="10.125" PointY="2" />
         <EntityTypeShape EntityType="TransportDBModel.Fuel" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="TransportDBModel.Route" Width="1.5" PointX="5.625" PointY="11.25" />
-        <EntityTypeShape EntityType="TransportDBModel.Ticket" Width="1.5" PointX="7.875" PointY="9.25" />
         <EntityTypeShape EntityType="TransportDBModel.TransportType" Width="1.5" PointX="2.75" PointY="6.75" />
-        <AssociationConnector Association="TransportDBModel.FK_Ticket_Route" />
         <EntityTypeShape EntityType="TransportDBModel.Person" Width="1.5" PointX="8.25" PointY="0.75" />
         <EntityTypeShape EntityType="TransportDBModel.Transport" Width="1.5" PointX="5" PointY="6.5" />
         <AssociationConnector Association="TransportDBModel.FK_Person_AspNetUsers" />
         <AssociationConnector Association="TransportDBModel.FK_Person_Transport" />
-        <AssociationConnector Association="TransportDBModel.FK_Ticket_Person" />
         <AssociationConnector Association="TransportDBModel.FK_Route_Transport" />
         <AssociationConnector Association="TransportDBModel.FK_Transport_TransportType" />
         <AssociationConnector Association="TransportDBModel.FK_Person_PersonType" />
         <AssociationConnector Association="TransportDBModel.FK_Transport_Fuel" />
+        <EntityTypeShape EntityType="TransportDBModel.Ticket" Width="1.5" PointX="10.5" PointY="6" />
+        <AssociationConnector Association="TransportDBModel.FK_Ticket_Person" />
+        <AssociationConnector Association="TransportDBModel.FK_Ticket_Route" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

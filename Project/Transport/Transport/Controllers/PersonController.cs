@@ -10,12 +10,13 @@ using Transport.Models;
 
 namespace Transport.Controllers
 {
+    [Authorize]
     public class PersonController : Controller
     {
         PersonDAO _personDAO = new PersonDAO();
         TransportDBEntities _edm = new TransportDBEntities();
 
-        // GET: Person
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             var persons = await _personDAO.GetPersons();
@@ -23,6 +24,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administration")]
         public async Task<ActionResult> Edit(int personId)
         {
             var transports = _edm.Transports.Select(x => new TransportViewModel
@@ -44,6 +46,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administration")]
         public async Task<ActionResult> Edit(PersonViewModel model)
         {
             if (ModelState.IsValid && model != null)
@@ -56,6 +59,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administration")]
         public async Task<ActionResult> Delete(int personId)
         {
             var person = await _personDAO.GetPersonById(personId);
@@ -63,6 +67,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administration")]
         public async Task<ActionResult> Delete(PersonViewModel model)
         {
             if (ModelState.IsValid && model != null)
@@ -74,6 +79,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administration")]
         public ActionResult Create()
         {
             var transports = _edm.Transports.Select(x => new TransportViewModel
@@ -96,6 +102,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administration")]
         public async Task<ActionResult> Create(PersonViewModel model)
         {
             if (ModelState.IsValid && model != null)

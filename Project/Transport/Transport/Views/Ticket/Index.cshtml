@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Tickets</h2>
 
 <table class="table">
     <tr>
@@ -65,9 +65,21 @@
                 @Html.DisplayFor(modelItem => item.TicketState)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @if (item.TicketState != "Purchased")
+                {
+                    @Html.ActionLink("Confirm", "PurchaseTicket", new { id = item.TicketId })
+                }
+                |
+                @if (item.TicketState != "Canceled")
+                {
+                    @Html.ActionLink("Cancel", "CancelBookedTicket", new { id = item.TicketId })
+                }
+                |
+                @if (User.IsInRole("Administration"))
+                {
+                    @Html.ActionLink("Remove", "RemoveTicket", new { id = item.TicketId })
+                }
+
             </td>
         </tr>
     }

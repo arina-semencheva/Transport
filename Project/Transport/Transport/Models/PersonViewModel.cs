@@ -20,5 +20,6 @@ namespace Transport.Models
         public int PersonTypeId { get; set; }
         public string Person => $"{Name} {Surname}";
         public TransportViewModel Transport { get; set; }
+        public string UserId { get; set; }
     }
 }

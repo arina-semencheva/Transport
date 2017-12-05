@@ -7,7 +7,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.IsInRole("Dispetcher") || User.IsInRole("Administration"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
     <tr>
@@ -42,9 +45,12 @@
                 @Html.DisplayFor(modelItem => item.Fuel)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { transportId = item.TransportId }) |
-                @Html.ActionLink("Details", "Details", new { transportId = item.TransportId }) |
-                @Html.ActionLink("Delete", "Delete", new { transportId = item.TransportId })
+                @if (User.IsInRole("Dispetcher") || User.IsInRole("Administration"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { transportId = item.TransportId }) <text>|</text>
+                    @Html.ActionLink("Delete", "Delete", new { transportId = item.TransportId })
+                }
+
             </td>
         </tr>
     }

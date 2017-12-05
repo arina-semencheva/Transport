@@ -10,6 +10,7 @@ using Transport.Models;
 
 namespace Transport.Controllers
 {
+    [Authorize]
     public class RouteController : Controller
     {
 
@@ -21,6 +22,7 @@ namespace Transport.Controllers
 
         }
 
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             var routes = await _routeDAO.GetRoutes();
@@ -28,6 +30,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Dispetcher,Aministration")]
         public async Task<ActionResult> Edit(int routeId)
         {
             var transports = _edm.Transports.Select(x => new TransportViewModel
@@ -50,6 +53,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Dispetcher,Aministration")]
         public async Task<ActionResult> Edit(RouteViewModel model)
         {          
             if (ModelState.IsValid && model != null)
@@ -62,6 +66,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Dispetcher,Aministration")]
         public async Task<ActionResult> Delete(int routeId)
         {
             var route = await _routeDAO.GetRouteById(routeId);
@@ -69,6 +74,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Dispetcher,Aministration")]
         public async Task<ActionResult> Delete(RouteViewModel route)
         {
             if (ModelState.IsValid && route != null)
@@ -80,6 +86,7 @@ namespace Transport.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Dispetcher,Aministration")]
         public ActionResult Create()
         {
             var transports = _edm.Transports.Select(x => new TransportViewModel
@@ -101,6 +108,7 @@ namespace Transport.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Dispetcher,Aministration")]
         public async Task<ActionResult> Create(RouteViewModel model)
         {
             if (ModelState.IsValid && model != null)

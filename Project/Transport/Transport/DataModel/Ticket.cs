@@ -20,7 +20,7 @@ namespace Transport.DataModel
         public string TicketState { get; set; }
         public System.DateTime PurchaseDate { get; set; }
     
-        public virtual Route Route { get; set; }
         public virtual Person Person { get; set; }
+        public virtual Route Route { get; set; }
     }
 }
